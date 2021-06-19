@@ -14,9 +14,16 @@ for (let i = 0; i < SQUARE_COUNT; i++) {
 
 // Set color
 function setColor(el) {
-  el.target.style.backgroundColor = 'red'
+  const color = '#' + getRandomColor()
+  el.target.style.backgroundColor = color
+  el.target.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
 }
 // Remove color
 function removeColor(el) {
   el.target.style.backgroundColor = '#1d1d1d'
+  el.target.style.boxShadow = `0 0 2px #000`
+}
+// Get random color
+function getRandomColor() {
+  return Math.floor(Math.random() * 16777215).toString(16)
 }
