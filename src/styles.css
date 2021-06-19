@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   background-color: #111;
   display: flex;
   flex-direction: column;
@@ -11,6 +14,16 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
+}
+
+.count-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.count-section h2 {
+  color: #fff;
 }
 
 .count-section input {

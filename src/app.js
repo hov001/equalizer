@@ -1,27 +1,45 @@
+const input = document.getElementById('count')
 const board = document.getElementById('board')
-const SQUARE_COUNT = 500
 
-for (let i = 0; i < SQUARE_COUNT; i++) {
-  const square = document.createElement('div')
-  square.classList.add('square')
+let SQUARE_COUNT = 260
 
-  // Events
-  square.addEventListener('mouseover', (evt) => setColor(evt))
-  square.addEventListener('mouseleave', (evt) => removeColor(evt))
+createSquare(SQUARE_COUNT)
 
-  board.appendChild(square)
+input.addEventListener('blur', (evt) => {
+  createSquare(evt.target.value)
+})
+input.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Enter') createSquare(evt.target.value)
+})
+
+// Create square
+function createSquare(counter) {
+  if (counter > 0 && counter <= 500) {
+    board.innerHTML = ''
+
+    for (let i = 0; i < counter; i++) {
+      const square = document.createElement('div')
+      square.classList.add('square')
+
+      // Events
+      square.addEventListener('mouseover', setColor)
+      square.addEventListener('mouseleave', removeColor)
+
+      board.appendChild(square)
+    }
+  }
 }
 
 // Set color
-function setColor(el) {
+function setColor(evt) {
   const color = '#' + getRandomColor()
-  el.target.style.backgroundColor = color
-  el.target.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
+  evt.target.style.backgroundColor = color
+  evt.target.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
 }
 // Remove color
-function removeColor(el) {
-  el.target.style.backgroundColor = '#1d1d1d'
-  el.target.style.boxShadow = `0 0 2px #000`
+function removeColor(evt) {
+  evt.target.style.backgroundColor = '#1d1d1d'
+  evt.target.style.boxShadow = `0 0 2px #000`
 }
 // Get random color
 function getRandomColor() {
